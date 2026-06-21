@@ -1,109 +1,153 @@
 /* =============================================
-   FATHER'S DAY WEBSITE — JavaScript
+   FATHER'S DAY — script.js (Tabbed Navbar)
    ============================================= */
 
-// ===== FLOATING PARTICLES =====
-(function createParticles() {
+// ===== PARTICLES =====
+(function () {
   const container = document.getElementById('particles');
-  const count = 28;
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < 30; i++) {
     const p = document.createElement('div');
     p.classList.add('particle');
-    const size = Math.random() * 6 + 2;
-    const left = Math.random() * 100;
-    const duration = Math.random() * 18 + 12;
-    const delay = Math.random() * 20;
+    const size = Math.random() * 5 + 2;
     p.style.cssText = `
-      width: ${size}px;
-      height: ${size}px;
-      left: ${left}%;
-      animation-duration: ${duration}s;
-      animation-delay: -${delay}s;
+      width:${size}px; height:${size}px;
+      left:${Math.random() * 100}%;
+      animation-duration:${Math.random() * 18 + 12}s;
+      animation-delay:-${Math.random() * 25}s;
     `;
     container.appendChild(p);
   }
 })();
 
-// ===== SCROLL-BASED ANIMATIONS =====
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        // stagger children
-        const delay = entry.target.dataset.delay || 0;
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, delay);
-        observer.unobserve(entry.target);
-      }
+// ===== TAB SWITCHING =====
+const tabs   = document.querySelectorAll('.nav-tab');
+const pages  = document.querySelectorAll('.page');
+const indicator = document.getElementById('tabIndicator');
+
+function moveIndicator(btn) {
+  const rect = btn.getBoundingClientRect();
+  const navRect = document.getElementById('navbar').getBoundingClientRect();
+  indicator.style.left    = (rect.left - navRect.left) + 'px';
+  indicator.style.width   = rect.width + 'px';
+  indicator.style.opacity = '1';
+}
+
+function switchTab(tabName) {
+  // Deactivate all tabs & pages
+  tabs.forEach(t => {
+    t.classList.remove('active');
+    t.setAttribute('aria-selected', 'false');
+  });
+  pages.forEach(p => p.classList.remove('active'));
+
+  // Activate chosen tab & page
+  const targetTab  = document.querySelector(`[data-tab="${tabName}"]`);
+  const targetPage = document.getElementById(`page-${tabName}`);
+
+  if (targetTab && targetPage) {
+    targetTab.classList.add('active');
+    targetTab.setAttribute('aria-selected', 'true');
+    targetPage.classList.add('active');
+    moveIndicator(targetTab);
+
+    // Re-trigger pop animations on cards in that page
+    targetPage.querySelectorAll('.pop').forEach(el => {
+      el.style.animation = 'none';
+      el.offsetHeight; // force reflow
+      el.style.animation = '';
     });
-  },
-  { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
-);
+  }
 
-document.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
-  el.dataset.delay = i * 80; // slight stagger
-  observer.observe(el);
+  // Close mobile menu
+  document.getElementById('navTabs').classList.remove('open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Attach click listeners to tabs
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => switchTab(tab.dataset.tab));
 });
 
-// ===== PARALLAX HERO =====
+// Init indicator on load
+window.addEventListener('load', () => {
+  const activeTab = document.querySelector('.nav-tab.active');
+  if (activeTab) moveIndicator(activeTab);
+});
+window.addEventListener('resize', () => {
+  const activeTab = document.querySelector('.nav-tab.active');
+  if (activeTab) moveIndicator(activeTab);
+});
+
+// ===== HAMBURGER MENU =====
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navTabs').classList.toggle('open');
+});
+
+// ===== HERO PARALLAX =====
 const heroBg = document.querySelector('.hero-bg');
-if (heroBg) {
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    heroBg.style.transform = `scale(1.05) translateY(${scrollY * 0.3}px)`;
-  }, { passive: true });
+function onScroll() {
+  if (!heroBg) return;
+  heroBg.style.transform = `scale(1.05) translateY(${window.scrollY * 0.25}px)`;
 }
+window.addEventListener('scroll', onScroll, { passive: true });
 
-// ===== SMOOTH CURSOR GLOW (subtle) =====
-const cursorGlow = document.createElement('div');
-cursorGlow.style.cssText = `
-  position: fixed;
-  pointer-events: none;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(240,180,41,0.055), transparent 70%);
-  transform: translate(-50%, -50%);
-  transition: left 0.15s ease, top 0.15s ease;
-  z-index: 9999;
-  mix-blend-mode: screen;
-`;
-document.body.appendChild(cursorGlow);
-
-document.addEventListener('mousemove', (e) => {
-  cursorGlow.style.left = e.clientX + 'px';
-  cursorGlow.style.top = e.clientY + 'px';
+// ===== CURSOR GLOW =====
+const glow = document.createElement('div');
+Object.assign(glow.style, {
+  position: 'fixed', pointerEvents: 'none',
+  width: '340px', height: '340px', borderRadius: '50%',
+  background: 'radial-gradient(circle, rgba(240,180,41,0.06), transparent 70%)',
+  transform: 'translate(-50%,-50%)',
+  transition: 'left 0.12s ease, top 0.12s ease',
+  zIndex: '9999', mixBlendMode: 'screen'
+});
+document.body.appendChild(glow);
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top  = e.clientY + 'px';
 });
 
-// ===== MEMORY CARD TILT (subtle 3D) =====
-document.querySelectorAll('.glass-card').forEach(card => {
-  card.addEventListener('mousemove', (e) => {
+// ===== CARD 3D TILT =====
+document.addEventListener('mousemove', e => {
+  document.querySelectorAll('.trait-card, .memory-card, .glass-card').forEach(card => {
     const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    card.style.transform = `
-      translateY(-4px)
-      rotateX(${-y * 4}deg)
-      rotateY(${x * 4}deg)
+    if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) return;
+    const x = (e.clientX - rect.left) / rect.width  - 0.5;
+    const y = (e.clientY - rect.top)  / rect.height - 0.5;
+    card.style.transform = `translateY(-6px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg)`;
+  });
+});
+document.addEventListener('mouseleave', () => {
+  document.querySelectorAll('.trait-card, .memory-card, .glass-card').forEach(c => c.style.transform = '');
+});
+document.querySelectorAll('.trait-card, .memory-card, .glass-card').forEach(card => {
+  card.addEventListener('mouseleave', () => card.style.transform = '');
+});
+
+// ===== CONFETTI BURST =====
+window.launchConfetti = function () {
+  const ring = document.getElementById('confettiRing');
+  if (!ring) return;
+  const colors = ['#f0b429','#ffd966','#ff6b6b','#4ecdc4','#a29bfe','#fd79a8','#55efc4'];
+  for (let i = 0; i < 60; i++) {
+    const piece = document.createElement('div');
+    piece.classList.add('confetti-piece');
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const left  = Math.random() * 100;
+    const dur   = Math.random() * 1.5 + 1;
+    const delay = Math.random() * 0.8;
+    const size  = Math.random() * 8 + 5;
+    piece.style.cssText = `
+      left:${left}%; top:0;
+      width:${size}px; height:${size}px;
+      background:${color};
+      border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
+      animation-duration:${dur}s;
+      animation-delay:${delay}s;
     `;
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
-});
+    ring.appendChild(piece);
+    setTimeout(() => piece.remove(), (dur + delay + 0.2) * 1000);
+  }
+};
 
-// ===== TITLE LETTER REVEAL =====
-function wrapLetters(el) {
-  if (!el) return;
-  const text = el.innerText;
-  el.innerHTML = text.split('').map((char, i) => {
-    if (char === ' ') return ' ';
-    return `<span style="display:inline-block; animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.025}s both">${char}</span>`;
-  }).join('');
-}
-
-// ===== LAUNCH =====
-window.addEventListener('DOMContentLoaded', () => {
-  console.log('💛 Happy Father\'s Day, Gaurav! Love, Om.');
-});
+console.log('💛 Happy Father\'s Day Gaurav! Love, Om.');
