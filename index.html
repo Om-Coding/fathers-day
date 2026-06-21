@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Father's Day, Dad 💛 | From Om</title>
-  <meta name="description" content="A special Father's Day tribute to Gaurav Sharma from his son Om — filled with real memories, love, and gratitude." />
+  <meta name="description" content="A Father's Day tribute to Gaurav Sharma from Om." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -12,191 +12,140 @@
 </head>
 <body>
 
-  <!-- PARTICLES -->
   <div class="particles" id="particles"></div>
 
-  <!-- ===== NAVBAR ===== -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <div class="nav-logo">
-        <span class="nav-logo-heart">💛</span>
-        <span>Dad & Om</span>
-      </div>
-      <ul class="nav-tabs" id="navTabs" role="tablist">
-        <li><button class="nav-tab active" data-tab="home"    id="tab-home"     role="tab" aria-selected="true">🏠 Home</button></li>
-        <li><button class="nav-tab"        data-tab="about"   id="tab-about"    role="tab">👨 About Dad</button></li>
-        <li><button class="nav-tab"        data-tab="memories" id="tab-memories" role="tab">📸 Memories</button></li>
-        <li><button class="nav-tab"        data-tab="letter"  id="tab-letter"   role="tab">💌 Letter</button></li>
-        <li><button class="nav-tab"        data-tab="cheers"  id="tab-cheers"   role="tab">🥂 Cheers</button></li>
-      </ul>
-      <!-- Hamburger for mobile -->
-      <button class="hamburger" id="hamburger" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <!-- Tab indicator bar -->
-    <div class="tab-indicator" id="tabIndicator"></div>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">💛 Dad &amp; Om</div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#" class="nav-link active" data-page="home">🏠 Home</a></li>
+      <li><a href="#" class="nav-link" data-page="about">👨 About Dad</a></li>
+      <li><a href="#" class="nav-link" data-page="memories">📸 Memories</a></li>
+      <li><a href="#" class="nav-link" data-page="letter">💌 Letter</a></li>
+      <li><a href="#" class="nav-link" data-page="cheers">🥂 Cheers</a></li>
+    </ul>
   </nav>
 
-  <!-- ===== PAGES ===== -->
-  <main class="pages-wrapper">
+  <!-- PAGES -->
+  <main>
 
-    <!-- ======== PAGE: HOME ======== -->
-    <section class="page active" id="page-home" role="tabpanel" aria-labelledby="tab-home">
+    <!-- HOME -->
+    <div class="page active" id="page-home">
       <div class="hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
-        <div class="hero-content">
-          <div class="badge anim" style="--d:0.1s">Happy Father's Day 2026 💛</div>
-          <h1 class="hero-title anim" style="--d:0.3s">
-            To the Greatest Dad,<br />
-            <span class="gold-text">Gaurav Sharma</span>
+        <div class="hero-inner">
+          <div class="pill fade" style="--i:0">Happy Father's Day 2026 💛</div>
+          <h1 class="fade" style="--i:1">
+            To the Greatest Dad,<br>
+            <span class="gold">Gaurav Sharma</span>
           </h1>
-          <p class="hero-sub anim" style="--d:0.55s">
-            From your son, <strong>Om</strong> — with all the love in the world.
+          <p class="hero-sub fade" style="--i:2">
+            From your son <strong>Om</strong> — with all the love in the world.
           </p>
-          <div class="hero-btns anim" style="--d:0.75s">
-            <button class="cta-btn" onclick="switchTab('memories')">See Our Memories ✨</button>
-            <button class="cta-btn cta-outline" onclick="switchTab('letter')">Read My Letter 💌</button>
+          <div class="hero-actions fade" style="--i:3">
+            <button class="btn-gold" onclick="goTo('memories')">See Our Memories ✨</button>
+            <button class="btn-outline" onclick="goTo('letter')">Read My Letter 💌</button>
           </div>
-        </div>
-        <!-- Quote ribbon -->
-        <div class="hero-quote anim" style="--d:1s">
-          <span class="hq-mark">"</span>
-          Working hard is always better than being smart.
-          <span class="hq-credit">— Dad</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======== PAGE: ABOUT DAD ======== -->
-    <section class="page" id="page-about" role="tabpanel" aria-labelledby="tab-about">
-      <div class="page-content">
-        <div class="page-header">
-          <span class="section-tag">The Man Himself</span>
-          <h2 class="section-title">Who Is <span class="gold-text">Gaurav Sharma?</span></h2>
-          <p class="page-intro">Here's the man behind all those unforgettable moments.</p>
-        </div>
-
-        <div class="traits-grid">
-          <div class="trait-card pop" style="--d:0.05s">
-            <div class="trait-icon">❤️</div>
-            <h3>Warm & Loving</h3>
-            <p>His love doesn't need words — it shows in every sacrifice, every late night, every moment he chose family first.</p>
-          </div>
-          <div class="trait-card pop" style="--d:0.1s">
-            <div class="trait-icon">⌚</div>
-            <h3>Watches & Collectables</h3>
-            <p>A man of taste. Whether it's a classic timepiece or a rare find, Dad knows quality when he sees it.</p>
-          </div>
-          <div class="trait-card pop" style="--d:0.15s">
-            <div class="trait-icon">🚗</div>
-            <h3>Cars & Fixing Things</h3>
-            <p>If it's broken, give it to Dad. There's something powerful about someone who can fix anything with their hands.</p>
-          </div>
-          <div class="trait-card pop" style="--d:0.2s">
-            <div class="trait-icon">💪</div>
-            <h3>Relentless Hard Worker</h3>
-            <p>He doesn't just preach hard work — he lives it every single day, quietly and without complaint.</p>
-          </div>
-          <div class="trait-card pop" style="--d:0.25s">
-            <div class="trait-icon">😄</div>
-            <h3>Secretly Hilarious</h3>
-            <p>Deadpan delivery, legendary timing. Dad's humor sneaks up on you — and when it hits, it really hits.</p>
-          </div>
-          <div class="trait-card pop" style="--d:0.3s">
-            <div class="trait-icon">🦸</div>
-            <h3>My Superhero</h3>
-            <p>No cape needed. He's shown up for me in ways I'll spend a lifetime being grateful for.</p>
+          <div class="quote-strip fade" style="--i:4">
+            <span class="qs-mark">"</span>
+            Working hard is always better than being smart.
+            <em>— Dad</em>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- ======== PAGE: MEMORIES ======== -->
-    <section class="page" id="page-memories" role="tabpanel" aria-labelledby="tab-memories">
-      <div class="page-content">
-        <div class="page-header">
-          <span class="section-tag">Our Story</span>
-          <h2 class="section-title">Memories I'll <span class="gold-text">Never Forget</span></h2>
-          <p class="page-intro">These are the moments that live rent-free in my heart.</p>
+    <!-- ABOUT -->
+    <div class="page" id="page-about">
+      <div class="page-wrap">
+        <div class="page-head">
+          <span class="tag">The Man Himself</span>
+          <h2>Who Is <span class="gold">Gaurav Sharma?</span></h2>
+          <p>The man behind every unforgettable moment.</p>
         </div>
+        <div class="card-grid">
+          <div class="icard slide" style="--i:0"><div class="ic-icon">❤️</div><h3>Warm &amp; Loving</h3><p>His love shows in every action, every sacrifice, every time he chose family first.</p></div>
+          <div class="icard slide" style="--i:1"><div class="ic-icon">⌚</div><h3>Watches &amp; Collectables</h3><p>A man of taste. Whether it's a fine timepiece or a rare find, he knows quality.</p></div>
+          <div class="icard slide" style="--i:2"><div class="ic-icon">🚗</div><h3>Cars &amp; Fixing Things</h3><p>If it's broken, give it to Dad. There's real power in someone who can fix anything.</p></div>
+          <div class="icard slide" style="--i:3"><div class="ic-icon">💪</div><h3>Relentless Hard Worker</h3><p>He doesn't just preach hard work — he lives it, every day, without complaint.</p></div>
+          <div class="icard slide" style="--i:4"><div class="ic-icon">😄</div><h3>Secretly Hilarious</h3><p>Deadpan delivery, legendary timing. His humor sneaks up on you — and lands hard.</p></div>
+          <div class="icard slide" style="--i:5"><div class="ic-icon">🦸</div><h3>My Superhero</h3><p>No cape needed. He's shown up for me in ways I'll spend a lifetime being grateful for.</p></div>
+        </div>
+      </div>
+    </div>
 
-        <div class="memory-grid">
-
-          <div class="memory-card pop" style="--d:0.05s" id="memory-1">
-            <div class="memory-top">
-              <span class="memory-emoji">🏠</span>
-              <span class="memory-num">01</span>
-            </div>
+    <!-- MEMORIES -->
+    <div class="page" id="page-memories">
+      <div class="page-wrap">
+        <div class="page-head">
+          <span class="tag">Our Story</span>
+          <h2>Memories I'll <span class="gold">Never Forget</span></h2>
+          <p>These moments live rent-free in my heart.</p>
+        </div>
+        <div class="mem-grid">
+          <div class="mcard slide" style="--i:0">
+            <div class="mcard-top"><span class="mcard-emoji">🏠</span><span class="mcard-num">01</span></div>
             <h3>Just the Two of Us — 10 Days</h3>
-            <p>When Mom and my sister went to India, it was just us. Ten whole days — no schedule, no rush. We held down the fort together. In those days we weren't just father and son. We were a team. That's my favourite memory with you.</p>
-            <div class="memory-tag">⭐ All-Time Favourite</div>
+            <p>When Mom and my sister went to India, it was just us. Ten whole days — no schedule, no rush. We held down the fort together. We weren't just father and son. We were a team. That's my favourite memory with you.</p>
+            <span class="mtag">⭐ All-Time Favourite</span>
           </div>
-
-          <div class="memory-card pop" style="--d:0.1s" id="memory-2">
-            <div class="memory-top">
-              <span class="memory-emoji">🛡️</span>
-              <span class="memory-num">02</span>
-            </div>
+          <div class="mcard slide" style="--i:1">
+            <div class="mcard-top"><span class="mcard-emoji">🛡️</span><span class="mcard-num">02</span></div>
             <h3>Dad vs. The Principal</h3>
-            <p>I was about to get detention. Dad didn't even hesitate — he walked right into that office and went to bat for me. That was the day I understood what it truly means to have someone in your corner, no matter what.</p>
-            <div class="memory-tag">💪 He Had My Back</div>
+            <p>I was about to get detention and Dad didn't hesitate for a second. He walked straight into that office and went to bat for me. That was the moment I truly understood what it means to have someone in your corner, always.</p>
+            <span class="mtag">💪 He Had My Back</span>
           </div>
-
-          <div class="memory-card pop funny-card" style="--d:0.15s" id="memory-3">
-            <div class="memory-top">
-              <span class="memory-emoji">💨🌸</span>
-              <span class="memory-num">03</span>
-            </div>
+          <div class="mcard slide funny-mcard" style="--i:2">
+            <div class="mcard-top"><span class="mcard-emoji">💨🌸</span><span class="mcard-num">03</span></div>
             <h3>The "Flowers" Incident</h3>
-            <p>Every. Single. Time. Without fail — Dad would let one rip and casually say "That's just flowers." No apology. No shame. Just pure, unwavering commitment to the bit. A legend was born.</p>
-            <div class="memory-tag funny-tag">😂 Hall of Fame</div>
+            <p>Every. Single. Time. Without fail — Dad would let one rip and casually say "That's just flowers." No apology. No shame. Just pure commitment to the bit. A legend was born and I'll tell my kids about it one day.</p>
+            <span class="mtag funny-mtag">😂 Hall of Fame</span>
           </div>
-
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- ======== PAGE: LETTER ======== -->
-    <section class="page" id="page-letter" role="tabpanel" aria-labelledby="tab-letter">
-      <div class="page-content letter-page">
-        <div class="page-header">
-          <span class="section-tag">From Om, With Love</span>
-          <h2 class="section-title">A Letter to <span class="gold-text">Dad</span></h2>
+    <!-- LETTER -->
+    <div class="page" id="page-letter">
+      <div class="page-wrap letter-wrap">
+        <div class="page-head">
+          <span class="tag">From Om, With Love</span>
+          <h2>A Letter to <span class="gold">Dad</span></h2>
         </div>
-        <div class="letter-card glass-card pop" style="--d:0.1s">
-          <div class="letter-lines"></div>
-          <p class="letter-greeting">Dear Dad,</p>
+        <div class="letter-card slide" style="--i:0">
+          <p class="letter-dear">Dear Dad,</p>
           <p>I know we don't always say it out loud — but I want you to know, today and every day, how much you mean to me.</p>
           <p>Those 10 days when it was just us? I think about that a lot. You made sure I was okay. You were fun and present and just… <em>Dad</em>. That's something I'll carry with me for the rest of my life.</p>
-          <p>And the day you walked into that school and stood up for me — that wasn't just a parent moment. That was a superhero moment. You didn't have to make a big deal out of it, but you did, because to you, I was worth it.</p>
-          <p>You've always told me: <strong>"Working hard is always better than being smart."</strong> I've thought about that so many times. It's not just advice — it's the way you live your life. And I see it. I respect it. I want to be like that.</p>
+          <p>And the day you walked into that school and stood up for me — that wasn't just a parent moment. That was a superhero moment. You didn't have to fight for me, but you did, because to you, I was worth it.</p>
+          <p>You've always told me: <strong>"Working hard is always better than being smart."</strong> It's not just advice — it's the way you live your life. I see it. I respect it. I want to be like that.</p>
           <p>And of course — thank you for the flowers. 😂 You've made life lighter and funnier than it had any right to be.</p>
-          <p>You are warm, you are strong, you are funny, and you are mine. I'm so lucky you're my dad.</p>
-          <p class="letter-sign">
-            With all my love,<br />
-            <strong class="gold-text">Om 💛</strong>
-          </p>
+          <p>You are warm, strong, funny, and you are mine. I'm so lucky you're my dad.</p>
+          <p class="letter-from">With all my love,<br><strong class="gold">Om 💛</strong></p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- ======== PAGE: CHEERS ======== -->
-    <section class="page" id="page-cheers" role="tabpanel" aria-labelledby="tab-cheers">
-      <div class="page-content cheers-page">
-        <div class="final-card pop" style="--d:0.1s">
-          <div class="confetti-ring" id="confettiRing"></div>
-          <div class="heart-pulse">💛</div>
-          <h2 class="final-title">Happy Father's Day,<br/><span class="gold-text">Dad.</span></h2>
-          <p class="final-sub">Today is yours. Every single day, I'm grateful you're mine.</p>
-          <div class="final-divider"></div>
-          <p class="final-names">Gaurav Sharma <span class="gold-text">×</span> Om Sharma</p>
-          <div class="final-year">2026</div>
-          <button class="cta-btn celebrate-btn" id="celebrateBtn" onclick="launchConfetti()">🎉 Celebrate!</button>
+    <!-- CHEERS -->
+    <div class="page" id="page-cheers">
+      <div class="cheers-wrap">
+        <div class="cheers-card slide" style="--i:0">
+          <div id="confettiBox"></div>
+          <div class="big-heart">💛</div>
+          <h2>Happy Father's Day,<br><span class="gold">Dad.</span></h2>
+          <p>Today is yours. Every day, I'm grateful you're mine.</p>
+          <div class="divider"></div>
+          <p class="names">Gaurav Sharma <span class="gold">×</span> Om Sharma</p>
+          <p class="year">2026</p>
+          <button class="btn-gold celebrate" onclick="burst()">🎉 Celebrate!</button>
         </div>
       </div>
-    </section>
+    </div>
 
   </main>
 
